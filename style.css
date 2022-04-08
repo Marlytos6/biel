@@ -1,0 +1,141 @@
+@charset 'UTF-8';
+
+:root {
+    --font_padrao: Arial, Helvetica, sans-serif;
+}
+/* Queremos definir o espaçamento, nós mesmo */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    /* da o efeito visual de atrazo */
+    transition: 0.3s;
+}
+  
+a:hover {
+    /* da um efeito para identificar o link quando o maude está em cima */
+    opacity: 0.7;
+}
+
+.logo {
+    /* estilo simples para o logo */
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+nav {
+    /* deixa tudo na mesma linha, porém de fácil personalização */
+    display: flex;
+    /* o espaço ao redor seja a metade */
+    justify-content: space-around; /* espaço ao redor = space-around */
+    /* alinhamento dos itens ao centro */
+    align-items: center;
+    font-family: var(--font_padrao);
+    background: #23232e;
+    height: 8vh;
+}
+
+main {
+    background: url("bg.jpg") no-repeat center center;
+    background-size: cover;
+    height: 92vh;
+}
+
+.nav-list {
+    /* retira o simbolo no inicio dos links(padrao da tag ul) */
+    list-style: none;
+    display: flex;
+}
+
+.nav-list li {
+    /* espaçamento entre letras */
+    letter-spacing: 3px;
+    margin-left: 32px;
+}
+
+.mobile-menu {
+    /* por padrao nao e exibido o menu */
+    display: none;
+    /* caso passe o mouse em cima exibe o ponteiro */
+    cursor: pointer;
+}
+/* cada linha do meu menu hamburguer */
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: #fff;
+    margin: 8px;
+    transition: 0.3s;
+}
+/* caso a tela ?, fassa isso... */
+@media (max-width: 999px) {
+    body {
+        /* retira o que transbordar da tela no eixo X */
+        overflow-x: hidden;
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 8vh;
+        right: 0;
+        width: 50vw;
+        height: 92vh;
+        background: #23232e;
+        /* coloca todos os itens em uma coluna */
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        /* retira o menu da tela */
+        transform: translateX(100%);
+        /* personaliza a chegada do menu */
+        transition: transform 0.3s ease-in;
+    }
+
+    .nav-list li {
+        /* retiro a margem entre eles para que fiquem no centro do meu menu */
+        margin-left: 0;
+        /* solido e sem reflexao */
+        opacity: 0;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+}
+/* esse '.active' e referente a uma classe que está no java script */
+/* caso a barra de navegacao de web nao estiver visivel exiba o icone do menu e a animacao */
+.nav-list.active {
+    /* caso clik no botao de menu tras o menu para a tela*/
+    transform: translateX(0);
+}
+/* define as transicoes em uma animacao */
+/* o nome dessa animacao é o parametro */
+@keyframes navLinkFade {
+    /* apartie de */
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    /* para */
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* serve para personalizar a trasicao do icone do menu */
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
