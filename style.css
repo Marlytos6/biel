@@ -26,24 +26,28 @@ a:hover {
     font-size: 24px;
     text-transform: uppercase;
     letter-spacing: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 nav {
     /* deixa tudo na mesma linha, porém de fácil personalização */
     display: flex;
     /* o espaço ao redor seja a metade */
-    justify-content: space-around; /* espaço ao redor = space-around */
+    justify-content: left; /* espaço ao redor = space-around */
     /* alinhamento dos itens ao centro */
     align-items: center;
     font-family: var(--font_padrao);
     background: #23232e;
     height: 8vh;
+    position: relative;
 }
 
 main {
     background: url("bg.jpg") no-repeat center center;
     background-size: cover;
-    height: 92vh;
+    height: 89vh;
 }
 
 .nav-list {
@@ -63,6 +67,8 @@ main {
     display: none;
     /* caso passe o mouse em cima exibe o ponteiro */
     cursor: pointer;
+    padding: 2em;
+    padding-left: 10%;
 }
 /* cada linha do meu menu hamburguer */
 .mobile-menu div {
@@ -72,8 +78,8 @@ main {
     margin: 8px;
     transition: 0.3s;
 }
-/* caso a tela ?, fassa isso... */
-@media (max-width: 999px) {
+/* caso a tela seja menor que, fassa o menu aparecer */
+@media (max-width: 1000px) {
     body {
         /* retira o que transbordar da tela no eixo X */
         overflow-x: hidden;
@@ -82,7 +88,7 @@ main {
     .nav-list {
         position: absolute;
         top: 8vh;
-        right: 0;
+        left: 0;
         width: 50vw;
         height: 92vh;
         background: #23232e;
@@ -91,7 +97,8 @@ main {
         align-items: center;
         justify-content: space-around;
         /* retira o menu da tela */
-        transform: translateX(100%);
+        /* caso mude a direção precisa alterar o sinal */
+        transform: translateX(-100%);
         /* personaliza a chegada do menu */
         transition: transform 0.3s ease-in;
     }
