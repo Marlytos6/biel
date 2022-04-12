@@ -2,9 +2,11 @@
 
 :root {
     --font_padrao: Arial, Helvetica, sans-serif;
+    --cor: #23232e;
 }
 /* Queremos definir o espaçamento, nós mesmo */
 * {
+    font-family: var(--font_padrao);
     margin: 0;
     padding: 0;
 }
@@ -21,128 +23,85 @@ a:hover {
     opacity: 0.7;
 }
 
-.logo {
-    /* estilo simples para o logo */
-    font-size: 24px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-nav {
-    /* deixa tudo na mesma linha, porém de fácil personalização */
-    display: flex;
-    /* o espaço ao redor seja a metade */
-    justify-content: left; /* espaço ao redor = space-around */
-    /* alinhamento dos itens ao centro */
-    align-items: center;
-    font-family: var(--font_padrao);
-    background: #23232e;
+header {
+    background-color: var(--cor);
     height: 8vh;
-    position: relative;
+    padding: 1em;
+    box-sizing: border-box;
+    /* personalizando a exibição com o display flex */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-main {
-    background: url("bg.jpg") no-repeat center center;
-    background-size: cover;
-    height: 89vh;
+#logo {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-.nav-list {
-    /* retira o simbolo no inicio dos links(padrao da tag ul) */
+#nav-list {
     list-style: none;
+    gap: 0.5rem;
     display: flex;
 }
 
-.nav-list li {
-    /* espaçamento entre letras */
-    letter-spacing: 3px;
-    margin-left: 32px;
+#nav-list a {
+    display: block;
+    padding: 0.5em;
 }
 
-.mobile-menu {
-    /* por padrao nao e exibido o menu */
+#mobile-menu {
     display: none;
-    /* caso passe o mouse em cima exibe o ponteiro */
-    cursor: pointer;
-    padding: 2em;
-    padding-left: 10%;
 }
-/* cada linha do meu menu hamburguer */
-.mobile-menu div {
-    width: 32px;
-    height: 2px;
-    background: #fff;
-    margin: 8px;
-    transition: 0.3s;
-}
-/* caso a tela seja menor que, fassa o menu aparecer */
+
 @media (max-width: 1000px) {
-    body {
-        /* retira o que transbordar da tela no eixo X */
-        overflow-x: hidden;
+    #mobile-menu {
+        background: none;
+        color: white;
+        font-size: 1em;
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+        gap: 0.5em;
+        display: flex
     }
 
-    .nav-list {
+    #nav-list {
+        visibility: hidden;
+        display: block;
+        background-color: var(--cor);
+        width: 35vw;
+        height: 0px;
+        transition: 0.3s;
+        overflow: hidden;
         position: absolute;
         top: 8vh;
-        left: 0;
-        width: 50vw;
+        left: 0px;
+        z-index: 8000;
+    }
+
+    nav.active #nav-list{
         height: 92vh;
-        background: #23232e;
-        /* coloca todos os itens em uma coluna */
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        /* retira o menu da tela */
-        /* caso mude a direção precisa alterar o sinal */
-        transform: translateX(-100%);
-        /* personaliza a chegada do menu */
-        transition: transform 0.3s ease-in;
+        visibility: visible;
+        overflow-y: auto;
     }
 
-    .nav-list li {
-        /* retiro a margem entre eles para que fiquem no centro do meu menu */
-        margin-left: 0;
-        /* solido e sem reflexao */
-        opacity: 0;
+    #nav-list a {
+        text-align: center;
+        padding: 1em;
+        border-bottom: 3px solid #46465d;
     }
 
-    .mobile-menu {
+    #ico {
+        width: 25px;
+        border-top: 2px solid;
+    }
+
+    #ico::after {
+        contain: '';
+        background: white;        width: 25px;
+        height: 2px;
+        margin-top: 5px;
         display: block;
     }
-}
-/* esse '.active' e referente a uma classe que está no java script */
-/* caso a barra de navegacao de web nao estiver visivel exiba o icone do menu e a animacao */
-.nav-list.active {
-    /* caso clik no botao de menu tras o menu para a tela*/
-    transform: translateX(0);
-}
-/* define as transicoes em uma animacao */
-/* o nome dessa animacao é o parametro */
-@keyframes navLinkFade {
-    /* apartie de */
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    /* para */
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-/* serve para personalizar a trasicao do icone do menu */
-.mobile-menu.active .line1 {
-    transform: rotate(-45deg) translate(-8px, 8px);
-}
-
-.mobile-menu.active .line2 {
-    opacity: 0;
-}
-
-.mobile-menu.active .line3 {
-    transform: rotate(45deg) translate(-5px, -7px);
 }

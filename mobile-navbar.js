@@ -6,7 +6,7 @@ class MobileNavbar {
     this.mobileMenu = document.querySelector(mobileMenu);
     /* atributo que representa a lista de eventos */
     this.navList = document.querySelector(navList);
-    /* atributo que representa  os links ?*/
+    /* atributo que representa  os links */
     this.navLinks = document.querySelectorAll(navLinks);
     this.activeClass = "active";
     /* define o this como o objeto e não como a div do html */
@@ -27,10 +27,13 @@ class MobileNavbar {
   }
   /* cria a função que sera executado cado click no menu */
   handleClick() {
+    /* gambiarra temporaria */
+    let nav = document.querySelector('nav')
     /* apaga o atributo 'activeClass' */
     this.navList.classList.toggle(this.activeClass);
     /* serve para trocar o icone do menu para um X */
     this.mobileMenu.classList.toggle(this.activeClass);
+    nav.classList.toggle(this.activeClass);
     this.animateLinks();
   }
   /*cria a interação caso click sobre o menu */
@@ -47,8 +50,8 @@ class MobileNavbar {
 }
 /* caso mude o nome das classes devo mudar aqui tambem */
 const mobileNavbar = new MobileNavbar(
-  ".mobile-menu",
-  ".nav-list",
-  ".nav-list li",
+  "#mobile-menu",
+  "#nav-list",
+  "#nav-list li",
 );
 mobileNavbar.init();
