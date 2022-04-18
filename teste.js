@@ -1,39 +1,44 @@
 class MobileNavbar {
   constructor(mobileMenu, navList, navLinks) {
-    /* seletores */
-    this._mobileMenu = document.querySelector(mobileMenu)
-    this._navList = document.querySelector(navList)
-    this._navLinks = document.querySelectorAll(navLinks)
+    this.mobileMenu = document.querySelector(mobileMenu);
+    this.navList = document.querySelector(navList);
+    this.navLinks = document.querySelectorAll(navLinks);
+    this.activeClass = "active";
 
-    /* define o 'this' como o elemento do html e nao o objeto em JavaScript */
-    this._handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(event) {
-    const nav = document.querySelector('nav')
-    const active = nav.classList.contains("active")
-    if (event.type === 'touchstart') event.preventDefault();
-    nav.classList.toggle("active")
-    event.currentTarget.setAttribute('aria-expanded', !active);
-    if (!active) {
-      event.currentTarget.setAttribute('aria-label', 'fechar menu')
-    } else {
-      event.currentTarget.setAttribute('aria-label', 'abrir menu')
-    }
+  animateLinks() {
+    this.navLinks.forEach((link, index) => {
+      link.style.animation
+        ? (link.style.animation = "")
+        : (link.style.animation = `navLinkFade 0.5s ease forwards ${
+            index / 7 + 0.3
+          }s`);
+    });
+  }
+
+  handleClick() {
+    this.navList.classList.toggle(this.activeClass);
+    this.mobileMenu.classList.toggle(this.activeClass);
+    this.animateLinks();
   }
 
   addClickEvent() {
-    this._mobileMenu.addEventListener('click', this.handleClick)
-    this._mobileMenu.addEventListener('touchstart', this.handleClick)
+    this.mobileMenu.addEventListener("click", this.handleClick);
   }
 
   init() {
-    if (this._mobileMenu) {
-      this.addClickEvent()
+    if (this.mobileMenu) {
+      this.addClickEvent();
     }
-    return this
+    return this;
   }
 }
 
-const Mobile = new MobileNavbar('#btn_menu', '#menu_list', '#menu_list li',)
-Mobile.init()
+const mobileNavbar = new MobileNavbar(
+  ".mobile-menu",
+  ".nav-list",
+  ".nav-list li",
+);
+mobileNavbar.init();
