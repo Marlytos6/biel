@@ -1,14 +1,15 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.views import generic
 
 
 # Create your views here.
 def index(requisicao):
-    # criar template
     return render(requisicao, 'jogo_da_vida/index.html')
 
 
+#class jogo(generic.DetailView):
+ #   model = #classe
+  #  template_name = 'jogo_da_vida/jogo.html'
+
 def jogo(requisicao):
-    # adicionar a tela do jogo baseado na biblioteca python
-    context = None
-    return render(requisicao, 'jogo_da_vida/jogo.html', context)
+    return render(requisicao, 'jogo_da_vida/jogo.html')
