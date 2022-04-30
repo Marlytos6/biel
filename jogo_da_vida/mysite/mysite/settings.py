@@ -31,8 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jogo_da_vida.apps.JogoDaVidaConfig',
-    'jogo_da_vida.apps.jogo',
+    'polls.apps.JogoDaVidaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

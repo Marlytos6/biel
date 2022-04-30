@@ -4,12 +4,12 @@ from django.views import generic
 
 # Create your views here.
 def index(requisicao):
-    return render(requisicao, 'jogo_da_vida/index.html')
+    return render(requisicao, 'polls/index.html')
 
 
 #class jogo(generic.DetailView):
  #   model = #classe
-  #  template_name = 'jogo_da_vida/jogo.html'
+  #  template_name = 'polls/jogo.html'
 
 def jogo(requisicao):
-    return render(requisicao, 'jogo_da_vida/jogo.html')
+    return render(requisicao, 'polls/jogo.html')
